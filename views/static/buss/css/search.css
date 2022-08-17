@@ -1,0 +1,53 @@
+.zmdi-help-outline:before {
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    color: #ffffff !important;
+}
+
+.card-box {
+    /*background-color: rgba(0, 0, 0, 0.6);*/
+}
+
+/*.login {*/
+/*    width: 100px;*/
+/*}*/
+
+.search-title {
+    font-weight: 600;
+    font-size: 28px;
+    color: #ffffff !important;
+}
+
+.tip-twitter {
+    max-width: 375px;
+}
+
+#filter {
+    /*background-color: rgba(0, 0, 0, 0.6)*/
+}
+
+.btn-inverse {
+    background-color: #2d8cf0 !important;
+}
+
+.btn-inverse:hover {
+    background-color: #57a3f3; !important;
+}
+
+.zmdi-help-outline {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.topbar-main {
+    background-color: black !important;
+}
+
+.navbar-custom {
+    background-color: rgba(0, 0, 0, 0.26) !important;
+}
+
+.submenu {
+    /*border-color: rgba(0, 0, 0, 0.26) !important;*/
+    background-color: rgba(255, 255, 255, 0.26) !important;
+}

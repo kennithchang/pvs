@@ -1,0 +1,9 @@
+*.pyc
+*.log
+*DS_Store
+.idea
+*.out
+
+
+Run.py
+xunfengdb/

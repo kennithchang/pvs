@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block css %}
+    <link href="static/css/summary.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block webinfo %}
+
+
+
+    <div class="container">
+        <form method="get" name="" action="javascript:;" target="_blank" style="width:487px;height:34px;margin:10px auto 0 auto;">
+            <div id="searchTxt" class="searchTxt" onMouseOver="this.className='searchTxt searchTxtHover';" onMouseOut="this.className='searchTxt';">
+                <div class="radius" style="top:-2px;"></div>
+                <div class="radius" style="top:31px;"></div>
+                <div class="searchMenu">
+                    <div class="searchSelected" id="searchSelected" value="ip">IP</div>
+                    <div style="display:none;" class="searchTab" id="searchTab">
+                        <div class="radius" style="top:259px;"></div>
+                        <div class="radius" style="top:259px;left:59px;"></div>
+                        <ul class="filter-select">
+                            <li>ip</li>
+                            <li>port</li>
+                            <li>title</li>
+                            <li>vul_level</li>
+                        </ul>
+                    </div>
+                </div>
+                <input id="filterInput" name="w" type="text" />
+<!--                <a href="javascript:;" target="_blank"><img id="sogouLogo" alt="搜狗" class="sosoLogo" src="images/sogoulogo.png"></a>-->
+            </div>
+            <div class="searchBtn">
+                <button id="searchBtn" type="submit">查询</button>
+            </div>
+        </form>
+
+        <table border="1"align="center"height="100"width="400"bordercolor="#e8eaec">
+            <tr>
+                <th>IP</th>
+                <th>端口</th>
+                <th>主机名</th>
+                <th>风险等级</th>
+                <th>漏洞描述</th>
+                <th>插件类型</th>
+                <th>任务名称</th>
+                <th>时间</th>
+                <th>扫描批次</th>
+            </tr>
+            {% for i in cursor %}
+                <tr>
+                    <td>{{ i.ip }}</td>
+                    <td>{{ i.port }}</td>
+                    <td>{{ i.hostname }}</td>
+                    <td>{{ i.vul_level }}</td>
+                    <td title={{ i.info }}>{{ i.info }}</td>
+                    <td>{{ i.vul_name }}</td>
+                    <td>{{ i.title }}</td>
+                    <td title={{ i.time }}>{{ i.time }}</td>
+                    <td title={{ i.task_date }}>{{ i.task_date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="static/js/dropify.min.js"></script>
+    <script src="static/js/ajaxfileupload.js"></script>
+    <script src="static/buss/js/plugin.js"></script>
+    <script type="text/javascript">
+        var filter_key = 'ip'
+
+
+        $(function(){
+
+            $("#searchSelected").click(function(){
+                $("#searchTab").show();
+                $(this).addClass("searchOpen");
+            });
+
+            $("#searchTab li").hover(function(){
+                $(this).addClass("selected");
+            },function(){
+                $(this).removeClass("selected");
+            });
+
+            $("#searchTab li").click(function(){
+                $("#searchSelected").html($(this).html());
+                filter_key = $(this).html();
+                console.log(filter_key)
+                $("#searchTab").hide();
+                $("#searchSelected").removeClass("searchOpen");
+            });
+
+
+            $("#searchBtn").click(function(){
+                let query_parems = $("#filterInput").val()
+                if (query_parems) {
+                    self.location.href = location.href.url_update_one_query(filter_key, query_parems);
+                } else {
+                    alert('请输入查询条件');
+                    self.location.href = location.href;
+                }
+            })
+
+        })
+    </script>
+{% endblock %}
